@@ -234,9 +234,9 @@
 					</el-dialog>
 				</div>
 			</div>
-			<div class="step3Time step3Span" v-if="data.aptitude.length!=0">
+			<div class="step3Time step3Span" v-if="data.aptitude!=null">
 				<span class="step3Before">行业资质</span>
-				<div class="step3Upload step3TimeTrademark step3Industry step3UploadContainer" >
+				<div class="step3Upload step3TimeTrademark step3Qualify" >
 					<div class="step3Industry" v-for="(item,index) in data.aptitude" @click="step3Qualification(index)">
 						<el-upload 
 						  class="avatar-uploader"
@@ -254,7 +254,7 @@
 				</div>
 			</div>
 			<div class="step3Photo">
-				<span class="step3PhotoText">其他行业资质</span>
+				<span class="step3PhotoTextOther">其他行业资质</span>
 				<div class="step3PhotoWall">
 					<el-upload
 					  action="http://v20-dev.shunliandongli.com/uploads"
@@ -715,6 +715,7 @@
     	display: inline-block;
     	vertical-align: top;
     	margin-right: 35px;
+    	margin-bottom: 20px;
     }
     .step3Report{
     	display: inline-block;
@@ -739,6 +740,13 @@
 		color: rgb(255, 73, 73);
 		margin-right: 4px;
     }
+    .step3PhotoTextOther{
+    	width: 185px;
+    	display: inline-block;
+    	vertical-align: top;
+    	text-align: right;
+    	margin-right: 50px;
+    }
     .step3PhotoWall{
     	display: inline-block;
     }
@@ -746,5 +754,16 @@
 		content: '*';
 	    color: #ff4949;
 	    margin-right: 4px;
+	}
+	.step3Qualify{
+		margin-left: 235px;
+	}
+	.step3Qualify p{
+		width: 178px;
+    	height: 30px;
+    	line-height: 30px;
+    	text-align: center;
+    	color: #48576a;
+    	font-size: 20px;
 	}
 </style>

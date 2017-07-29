@@ -12,7 +12,7 @@ import '@/assets/css/public.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper' //swiper组件
 
 
-console.log("7.28.10.03");
+console.log("7.28.4.14");
 
 
 Vue.config.productionTip = false

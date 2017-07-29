@@ -56,7 +56,7 @@
 						placeholder="请选择或者搜索">
 						<el-option
 							v-for="item in pinpai_data"
-							:key="item.value"
+							:key="item.id"
 							:label="item.brand_name"
 							:value="item.id">
 						</el-option>
@@ -243,6 +243,7 @@ export default{
 		},
 		submit_logo(){
 			storebrand(this.up_pinpai).then((response)=>{
+				//console.log(this.pinpai_data)
 				if(response.data.success){
 					this.$message({
 						message:'上传成功',
@@ -253,7 +254,10 @@ export default{
 						}
 					});
 					this.dianpu_form.storeBrandName.push(response.data.data);
-					this.dianpu_form.storeBrandName1.push(response.data.data.brandName);				
+					//this.pinpai_data.push({id:response.data.data.brandId,brand_name:response.data.data.brandName});
+					let pp = {id:response.data.data.brandId,brand_name:response.data.data.brandName};
+					this.$set(this.pinpai_data,this.pinpai_data.length,pp);
+					this.dianpu_form.storeBrandName1.push(response.data.data.brandId);
 				}
 			})
 		},
@@ -282,12 +286,13 @@ export default{
 		},
 		//品牌选择改变
 		pinpaiChange(value){
-			//console.log(value)
+			console.log(this.dianpu_form.storeBrandName1)
 			var arr = value;
 			let obj={};
 			this.dianpu_form.storeBrandName=[];
 			obj = this.pinpai_data.map((item)=>{
 				for(let i=0;i<arr.length;i++){
+					//console.log(item.id,arr[i],1)
 					if(item.id == arr[i]){
 						//console.log(arr[i],item.id)
 						var nameId = {
@@ -295,11 +300,11 @@ export default{
 							brandName:item.brand_name
 						}
 						this.dianpu_form.storeBrandName.push(nameId)
-						//console.log(this.dianpu_form.storeBrandName)
+						//console.log(this.dianpu_form.storeBrandName,'change')
 					}
 				}
       		});
-      		//console.log(this.dianpu_form.storeBrandName)
+      		//console.log(this.dianpu_form.storeBrandName,'change2222')
 
 		},
 		//搜索品牌列表
@@ -316,6 +321,7 @@ export default{
 		next(dianpuFrom){
 			this.$refs[dianpuFrom].validate((valid) => {
         		if (valid) {
+        			console.log(this.dianpu_form.storeBrandName)
             		steptwo(this.dianpu_form).then((response)=>{
             			console.log(response)
             			let success = response.data.success;

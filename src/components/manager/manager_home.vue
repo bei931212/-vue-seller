@@ -3,6 +3,7 @@
 		<!-- 侧边栏 -->
 		<div class="side">
 			<el-menu default-active="" router class="el-menu-vertical-demo" theme="dark">
+				<el-menu-item v-if="status" index="/manager_home/manager"><i class="el-icon-message"></i>信息填写</el-menu-item>
 				<template  v-for="(item,index) in arr">
 					<el-submenu :index="item.id" v-if="item.child">
 						<template slot="title"><i class="el-icon-message"></i>{{item.name}}</template>
@@ -32,41 +33,31 @@ import Cookie from 'js-cookie'
 export default{
 	data(){
 		return{
-			arr:[{
-				path: "",
-				id:"1",
-				name: '用户相关',
-				child: [
-					{
-						rule: "manager",
-						name: "信息填写",
-						id:"2"
-					}
-				]
-			},
-			]
-		}
-	},
-	created(){
-		// console.log(this.$route.matched)
-		var _this=this
-		if(Cookie.get('sellerStatus')==0){
-			
-		}else if(Cookie.get('sellerStatus')==1){
-			this.arr=[]
-		 	getMenus().then(function(response){
-			 	console.log(response)
-			 	if(response.data.success){
-			 		_this.arr=response.data.data
-			 	}else{
-					_this.$message.error(response.data.message);
-			 	}
-			})
+			arr:[],
+			status:null
 		}
 	},
 	methods:{
-		
-	}
+		getMenus(){
+			var _this=this;
+			if(Cookie.get('sellerStatus')==0){
+				this.status=true;
+			}else if(Cookie.get('sellerStatus')==1){
+				this.status=false;
+			 	getMenus().then(function(response){
+				 	console.log(response)
+				 	if(response.data.success){
+				 		_this.arr=response.data.data
+				 	}else{
+						_this.$message.error(response.data.message);
+				 	}
+				})
+			}
+		}
+	},
+	created(){
+		this.getMenus();
+	},
 }	
 </script>
 <style>
