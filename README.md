@@ -1,4 +1,4 @@
-# 一个基于vue+element开发的招商和商家都太管理系统
+# 一个基于vue+element开发的招商和商家后台管理系统
 ### 运行：
 #### npm install
 #### npm run dev
