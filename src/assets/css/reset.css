@@ -1,0 +1,9 @@
+/*------------------------reset------------------------*/
+html,body,ol,ul,li,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,form,input,fieldset,legend,img,i,em,b,strong,textarea,select{margin:0;padding:0;}
+ul,li{list-style:none;}
+a{text-decoration:none;}
+b,strong,h1,h2,h3,h4,h5,h6{font-weight:100;}
+i,em{font-style:normal;}
+img{border:none;}
+body{font:12px "微软雅黑";width:100%;height:100%;overflow-x: hidden;}
+html{width:100%;height:100%;}
